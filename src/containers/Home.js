@@ -19,7 +19,7 @@ import "../App.css";
 const Home = props => {
   useEffect(() => {
     props.getProspects();
-  }, []);
+  });
 
   return (
     <div className="App">
