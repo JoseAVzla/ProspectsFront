@@ -30,19 +30,9 @@ export const getProspect = (idProspect) => {
   };
 };
 
-export const postProspect = (
-  nombre,
-  apellidop,
-  apellidom,
-  calle,
-  numero,
-  colonia,
-  cp,
-  telefono,
-  rfc,
-  documento
-) => {
+export const postProspect = ( nombre, apellidop, apellidom, calle, numero, colonia, cp, telefono, rfc, documento) => {
   return dispatch => {
+    console.log(nombre)
     axios
       .post("http://localhost:3001/save", {
         nombre,
@@ -67,7 +57,9 @@ export const postProspect = (
 
 export const deleteProspect = id => {
   return dispatch => {
-    axios.delete("http://localhost:3001/delete", { data: { id } }).then(res => {
+    axios
+    .delete("http://localhost:3001/delete", { data: { id } })
+    .then(res => {
       dispatch({
         type: "delete_prospect",
         payload: res.data

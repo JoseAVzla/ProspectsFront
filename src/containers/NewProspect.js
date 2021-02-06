@@ -18,7 +18,7 @@ const NewProspect = props => {
   const [cp, setCp] = useState("");
   const [telefono, setTelefono] = useState("");
   const [rfc, setRfc] = useState("");
-  const [documento, setDocumento] = useState();
+  const [documento, setDocumento] = useState("");
   const fileInput = React.createRef();
 
   const handleProspectSubmit = async () => {
@@ -136,7 +136,6 @@ const NewProspect = props => {
           <Form.Group>
             <input type="file" width={2} ref={fileInput} />
           </Form.Group>
-
           <Form.Button
             className="buttoncancel"
             color="red"
@@ -152,7 +151,7 @@ const NewProspect = props => {
             Cancelar
           </Form.Button>
           <Link to={"/"}>
-            <Button onClick={handleProspectSubmit}>Guardar</Button>
+            <Button onClick={handleProspectSubmit} color={"primary"}>Guardar</Button>
           </Link>
         </Form>
       </div>
@@ -162,32 +161,8 @@ const NewProspect = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postProspect: (
-      nombre,
-      apellidop,
-      apellidom,
-      calle,
-      numero,
-      colonia,
-      cp,
-      telefono,
-      rfc,
-      documento
-    ) =>
-      dispatch(
-        postProspect(
-          nombre,
-          apellidop,
-          apellidom,
-          calle,
-          numero,
-          colonia,
-          cp,
-          telefono,
-          rfc,
-          documento
-        )
-      )
+    postProspect: (nombre, apellidop, apellidom, calle, numero, colonia, cp, telefono, rfc, documento) =>
+      dispatch(postProspect(nombre, apellidop, apellidom, calle, numero, colonia, cp, telefono, rfc, documento))
   };
 };
 
