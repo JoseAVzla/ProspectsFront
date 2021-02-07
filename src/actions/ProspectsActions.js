@@ -38,7 +38,7 @@ export const postProspect = ( nombre, apellidop, apellidom, calle, numero, colon
   return dispatch => {
     console.log(nombre)
     axios
-      .post("https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects/add", {
+      .post("https://prospectos-api-nodejs-3lu95.ondigitalocean.app/add", {
         nombre,
         apellidop,
         apellidom,
