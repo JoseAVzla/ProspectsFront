@@ -7,7 +7,7 @@ export const getProspects = () => {
   }
   return dispatch => {
     axios
-      .get("https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects")
+      .get("https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects", config)
       .then(res => {
         dispatch({
           type: "get_prospects",
