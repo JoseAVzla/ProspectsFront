@@ -8,17 +8,17 @@ import { Link } from "react-router-dom";
 
 const VisualizeProspect = props => {
   let { id } = useParams();
-  const [idProspect, setIdProspect] = useState(id);
+  const { prospect } = props;
 
   useEffect(() => {
-    props.getProspect(idProspect);
+    props.getProspect(id);
   }, []);
-
+  console.log(prospect[0])
   return (
     <div className="App">
       <ProspectHeader
         headerTitle={`Visualizando información de  ${
-          props.prospect ? props.prospect.nombre : "nombre"
+          prospect[0] ? prospect[0].nombre : 'nombre'
         } `}
       />
       <br />
@@ -27,43 +27,38 @@ const VisualizeProspect = props => {
           <Card
             
             centered
-            color={ props.prospect ?  (props.prospect.estatus === "R" ? "red" : "green") : "grey"}
+            color={ prospect[0] ?  (prospect[0].estatus === "R" ? "red" : "green") : "grey"}
           >
             <Card.Content>
-              {/* <Image
-                    floated="right"
-                    size="mini"
-                    src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-                  /> */}
               <Card.Header>
-                {props.prospect
-                  ? props.prospect.nombre +
+                {prospect[0]
+                  ? prospect[0].nombre +
                     " " +
-                    props.prospect.apellidop +
+                    prospect[0].apellidop +
                     " " +
-                    props.prospect.apellidom
+                    prospect[0].apellidom
                   : ""}
               </Card.Header>
               <Card.Meta>
-                {props.prospect ? "Tel: " + props.prospect.telefono : ""}
+                {prospect[0] ? "Tel: " + prospect[0].telefono : ""}
               </Card.Meta>
               <Card.Description align="left">
                 <strong>Dirección: </strong>
-                {props.prospect
-                  ? props.prospect.calle +
+                {prospect[0]
+                  ? prospect[0].calle +
                     " " +
-                    props.prospect.numero +
+                    prospect[0].numero +
                     ", " +
-                    props.prospect.colonia +
+                    prospect[0].colonia +
                     ", " +
                     "cp " +
-                    props.prospect.cp +
+                    prospect[0].cp +
                     "."
                   : ""}
               </Card.Description>
               <Card.Description align="left">
                 <strong>RFC: </strong>
-                {props.prospect ? props.prospect.rfc + "." : ""}
+                {prospect[0] ? prospect[0].rfc + "." : ""}
               </Card.Description>
             </Card.Content>
             <Card.Content>
@@ -71,7 +66,7 @@ const VisualizeProspect = props => {
                     Observaciones
                 </Card.Header>
                 <Card.Description>
-                    {props.prospect ? props.prospect.observacion : ""}
+                    {prospect[0] ? prospect[0].observacion : ""}
                 </Card.Description>
             </Card.Content>
           </Card>
