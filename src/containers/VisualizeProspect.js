@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { getProspect } from "../actions/ProspectsActions";
-import { Card, Segment } from "semantic-ui-react";
+import { Card, Segment, Button } from "semantic-ui-react";
 import ProspectHeader from "../components/ProspectHeader";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const VisualizeProspect = props => {
   let { id } = useParams();
   const { prospect } = props;
-  console.log( 'Prospecto' ,props)
+  console.log("Prospecto", props);
 
   useEffect(() => {
     props.getProspect(id);
@@ -18,17 +18,22 @@ const VisualizeProspect = props => {
     <div className="App">
       <ProspectHeader
         headerTitle={`Visualizando información de  ${
-          prospect ? prospect[0].nombre : 'nombre'
+          prospect ? prospect[0].nombre : "nombre"
         } `}
       />
-      <p> Detalles de prospecto. </p>
+      <br />
       <br />
       <div style={{ width: "60%", margin: "auto" }}>
         <Segment>
           <Card
-            
             centered
-            color={ prospect ?  (prospect[0].estatus === "R" ? "red" : "green") : "grey"}
+            color={
+              prospect
+                ? prospect[0].estatus === "R"
+                  ? "red"
+                  : "green"
+                : "grey"
+            }
           >
             <Card.Content>
               <Card.Header>
@@ -63,15 +68,17 @@ const VisualizeProspect = props => {
               </Card.Description>
             </Card.Content>
             <Card.Content>
-                <Card.Header>
-                    Observaciones
-                </Card.Header>
-                <Card.Description>
-                    {prospect ? prospect[0].observacion : ""}
-                </Card.Description>
+              <Card.Header>Observaciones</Card.Header>
+              <Card.Description>
+                {prospect ? prospect[0].observacion : ""}
+              </Card.Description>
             </Card.Content>
           </Card>
         </Segment>
+
+        <Link to={"/"}>
+          <Button color="primary">Regresar</Button>
+        </Link>
       </div>
     </div>
   );

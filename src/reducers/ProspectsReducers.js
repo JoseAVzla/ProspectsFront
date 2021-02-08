@@ -1,7 +1,6 @@
 const ProspectReducer = (state, action) => {
-
   const initialState = {
-    prospects: ["prospect"]
+    prospects: ["initial state"]
 };
 
 if (typeof state == "undefined")
@@ -13,6 +12,7 @@ if (typeof state == "undefined")
         prospects: action.payload
       });
     case "get_prospect_by_id":
+      console.log('prospect', action.payload);
       return Object.assign({}, state, {
         prospect: action.payload
       });

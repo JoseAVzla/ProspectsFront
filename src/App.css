@@ -32,6 +32,19 @@
   float: right;
 }
 
+.div-header-left {
+  float: left;
+  background-color: #6ab7ff;
+}
+
+.pagination {
+  float: right;
+}
+
+.button-agregar{
+  float: left;
+}
+
 .buttoncancel{
   float: left;
 }

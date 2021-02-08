@@ -25,8 +25,8 @@ const EvaluateProspect = props => {
     props.getProspect(id);
   }, []);
 
-  const handleUpdateProspect = async (idProspect, estatus, observacion) => {
-    await props.updateProspect(idProspect, estatus, observacion);
+  const handleUpdateProspect = async (estatus, observacion) => {
+    await props.updateProspect(id, estatus, observacion);
   };
 
   const options = [
@@ -112,7 +112,7 @@ const EvaluateProspect = props => {
                 <Button
                   disabled={estatus === "E" ? true : false}
                   color="primary"
-                  onClick={e => handleUpdateProspect(id, estatus, observacion)}
+                  onClick={e => handleUpdateProspect( estatus, observacion)}
                 >
                   Evaluar
                 </Button>
