@@ -4,7 +4,7 @@ export const getProspects = (page, rowsPerPage) => {
   console.log(page + " " + rowsPerPage)
   return dispatch => {
     axios
-      .get(`https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects/page=${page}&limit=${rowsPerPage}`)
+      .get(`http://localhost:3001/prospects/page=${page}&limit=${rowsPerPage}`)
       .then(res => {
         dispatch({
           type: "get_prospects",
@@ -19,7 +19,7 @@ export const getProspects = (page, rowsPerPage) => {
 //https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects
 export const getProspect = (idProspect) => {
   return dispatch => {
-    axios.get(`https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects/${idProspect}`)
+    axios.get(`http://localhost:3001/prospects/${idProspect}`)
     .then(res => {
       dispatch({
         type: "get_prospect_by_id",
@@ -33,7 +33,7 @@ export const postProspect = ( nombre, apellidop, apellidom, calle, numero, colon
   return dispatch => {
     console.log(nombre)
     axios
-      .post("https://prospectos-api-nodejs-3lu95.ondigitalocean.app/add", {
+      .post("http://localhost:3001/prospects/add", {
         nombre,
         apellidop,
         apellidom,
@@ -71,7 +71,7 @@ export const updateProspect = (id, estatus, observacion) => {
   console.log(estatus + " " + observacion)
   return dispatch => {
     axios
-    .patch(`https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects/${id}`, { estatus, observacion })
+    .patch(`http://localhost:3001/update/${id}`, { estatus, observacion })
     .then(res => {
         dispatch({
           type: "update_prospect",
