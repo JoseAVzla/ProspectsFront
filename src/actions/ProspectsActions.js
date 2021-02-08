@@ -1,13 +1,9 @@
 import axios from "axios";
 
 export const getProspects = () => {
-
-  const config = {
-    headers:{'Acces-Control-Allow-Origin':'*'}
-  }
   return dispatch => {
     axios
-      .get("https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects", config)
+      .get("https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects")
       .then(res => {
         dispatch({
           type: "get_prospects",
@@ -21,9 +17,8 @@ export const getProspects = () => {
 };
 
 export const getProspect = (idProspect) => {
-  console.log("Action " + idProspect + " Si hay");
   return dispatch => {
-    axios.get(`https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects/${idProspect}`, {id: idProspect})
+    axios.get(`https://prospectos-api-nodejs-3lu95.ondigitalocean.app/prospects/${idProspect}`)
     .then(res => {
       console.log(res.data);
       dispatch({

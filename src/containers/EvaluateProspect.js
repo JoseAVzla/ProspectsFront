@@ -17,12 +17,12 @@ import { Link } from "react-router-dom";
 
 const EvaluateProspect = props => {
   let { id } = useParams();
-  const [idProspect, setIdProspect] = useState(id);
   const [estatus, setEstatus] = useState("E");
   const [observacion, setObservacion] = useState("");
+  const { prospect } = props;
 
   useEffect(() => {
-    props.getProspect(idProspect);
+    props.getProspect(id);
   }, []);
 
   const handleUpdateProspect = async (idProspect, estatus, observacion) => {
@@ -38,7 +38,7 @@ const EvaluateProspect = props => {
     <div className="App">
       <ProspectHeader
         headerTitle={`Evaluando a  ${
-          props.prospect ? props.prospect.nombre : "nombre"
+          prospect ? prospect[0].nombre : "nombre"
         } `}
       />
       <br />
@@ -46,42 +46,41 @@ const EvaluateProspect = props => {
         <Segment>
           <Grid columns={2} relaxed="very">
             <Grid.Column>
-              <Card className={"vertical-center"} centered color={ estatus === "R" ? "red" : "green" }>
+              <Card
+                className={"vertical-center"}
+                centered
+                color={estatus === "R" ? "red" : "green"}
+              >
                 <Card.Content>
-                  {/* <Image
-                    floated="right"
-                    size="mini"
-                    src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-                  /> */}
                   <Card.Header>
-                    {props.prospect
-                      ? props.prospect.nombre +
+                    {prospect
+                      ? prospect[0].nombre +
                         " " +
-                        props.prospect.apellidop +
+                        prospect[0].apellidop +
                         " " +
-                        props.prospect.apellidom
+                        prospect[0].apellidom
                       : ""}
                   </Card.Header>
                   <Card.Meta>
-                    {props.prospect ? "Tel: " + props.prospect.telefono : ""}
+                    {prospect ? "Tel: " + prospect[0].telefono : ""}
                   </Card.Meta>
                   <Card.Description align="left">
                     <strong>Dirección: </strong>
-                    {props.prospect
-                      ? props.prospect.calle +
+                    {prospect
+                      ? prospect[0].calle +
                         " " +
-                        props.prospect.numero +
+                        prospect[0].numero +
                         ", " +
-                        props.prospect.colonia +
+                        prospect[0].colonia +
                         ", " +
                         "cp " +
-                        props.prospect.cp +
+                        prospect[0].cp +
                         "."
                       : ""}
                   </Card.Description>
                   <Card.Description align="left">
                     <strong>RFC: </strong>
-                    {props.prospect ? props.prospect.rfc + "." : ""}
+                    {prospect ? prospect[0].rfc + "." : ""}
                   </Card.Description>
                 </Card.Content>
               </Card>
@@ -102,6 +101,7 @@ const EvaluateProspect = props => {
                 </Form.Group>
                 <Form.Group>
                   <Form.TextArea
+                    disabled={estatus === "A" ? true : false}
                     label="Observaciones"
                     placeholder="Observaciones"
                     onChange={event => setObservacion(event.target.value)}
@@ -110,10 +110,9 @@ const EvaluateProspect = props => {
               </Form>
               <Link to={"/"}>
                 <Button
+                  disabled={estatus === "E" ? true : false}
                   color="primary"
-                  onClick={e =>
-                    handleUpdateProspect(idProspect, estatus, observacion)
-                  }
+                  onClick={e => handleUpdateProspect(id, estatus, observacion)}
                 >
                   Evaluar
                 </Button>

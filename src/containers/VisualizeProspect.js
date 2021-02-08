@@ -9,29 +9,30 @@ import { Link } from "react-router-dom";
 const VisualizeProspect = props => {
   let { id } = useParams();
   const { prospect } = props;
+  console.log( 'Prospecto' ,props)
 
   useEffect(() => {
     props.getProspect(id);
   }, []);
-  console.log(prospect[0])
   return (
     <div className="App">
       <ProspectHeader
         headerTitle={`Visualizando información de  ${
-          prospect[0] ? prospect[0].nombre : 'nombre'
+          prospect ? prospect[0].nombre : 'nombre'
         } `}
       />
+      <p> Detalles de prospecto. </p>
       <br />
       <div style={{ width: "60%", margin: "auto" }}>
         <Segment>
           <Card
             
             centered
-            color={ prospect[0] ?  (prospect[0].estatus === "R" ? "red" : "green") : "grey"}
+            color={ prospect ?  (prospect[0].estatus === "R" ? "red" : "green") : "grey"}
           >
             <Card.Content>
               <Card.Header>
-                {prospect[0]
+                {prospect
                   ? prospect[0].nombre +
                     " " +
                     prospect[0].apellidop +
@@ -40,11 +41,11 @@ const VisualizeProspect = props => {
                   : ""}
               </Card.Header>
               <Card.Meta>
-                {prospect[0] ? "Tel: " + prospect[0].telefono : ""}
+                {prospect ? "Tel: " + prospect[0].telefono : ""}
               </Card.Meta>
               <Card.Description align="left">
                 <strong>Dirección: </strong>
-                {prospect[0]
+                {prospect
                   ? prospect[0].calle +
                     " " +
                     prospect[0].numero +
@@ -58,7 +59,7 @@ const VisualizeProspect = props => {
               </Card.Description>
               <Card.Description align="left">
                 <strong>RFC: </strong>
-                {prospect[0] ? prospect[0].rfc + "." : ""}
+                {prospect ? prospect[0].rfc + "." : ""}
               </Card.Description>
             </Card.Content>
             <Card.Content>
@@ -66,7 +67,7 @@ const VisualizeProspect = props => {
                     Observaciones
                 </Card.Header>
                 <Card.Description>
-                    {prospect[0] ? prospect[0].observacion : ""}
+                    {prospect ? prospect[0].observacion : ""}
                 </Card.Description>
             </Card.Content>
           </Card>
